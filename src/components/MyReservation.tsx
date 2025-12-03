@@ -1,7 +1,6 @@
 import { useState } from "react";
+import "./MyReservation.css"
 
-
-// Typ rezervace
 type Reservation = {
   id: number;
   clinic: string;
@@ -39,81 +38,78 @@ export default function MyReservations() {
 
   const handleChange = (id: number) => {
     alert(`Žádost o změnu termínu pro rezervaci #${id}`);
-    // zde by bylo otevření dialogu/kalendáře pro výběr termínu
   };
 
   const handleCancel = (id: number) => {
     alert(`Žádost o zrušení rezervace #${id}`);
-    // zde by bylo volání na backend ke zrušení
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Moje rezervace</h1>
-      <div className="grid gap-4">
-        {mockReservations.map((res) => (
-          <div
-            key={res.id}
-            className={`border rounded shadow p-4 cursor-pointer bg-white`}
-            onClick={() => handleSelect(res.id)}
-          >
-            <div className="flex justify-between items-center">
-              <span className="font-semibold">{res.procedure}</span>
-              <span
-                className={`text-xs px-2 py-1 rounded ${
-                  res.status === "potvrzeno"
-                    ? "bg-green-100 text-green-800"
-                    : "bg-yellow-100 text-yellow-800"
-                }`}
-              >
-                {res.status}
-              </span>
-            </div>
-            {selected === res.id && (
-              <div className="mt-2 text-sm transition-all">
-                <div>
-                  <strong>Klinika:</strong> {res.clinic}
-                </div>
-                <div>
-                  <strong>Lékař:</strong> {res.doctor}
-                </div>
-                <div>
-                  <strong>Datum a čas:</strong>{" "}
-                  {new Date(res.datetime).toLocaleString("cs-CZ", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </div>
-                <div className="mt-3 flex gap-3">
-                  <button
-                    className="px-3 py-1 border bg-blue-100 text-blue-900 rounded hover:bg-blue-200"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleChange(res.id);
-                    }}
-                  >
-                    Změnit termín
-                  </button>
-                  <button
-                    className="px-3 py-1 border bg-red-100 text-red-900 rounded hover:bg-red-200"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCancel(res.id);
-                    }}
-                  >
-                    Zrušit rezervaci
-                  </button>
-                </div>
+    <div className="myres-root">
+      <div className="myres-container">
+        <h1 className="myres-title">Moje rezervace</h1>
+        <div className="myres-list">
+          {mockReservations.map((res) => (
+            <div
+              key={res.id}
+              className={`myres-card ${selected === res.id ? "myres-card--active" : ""}`}
+              onClick={() => handleSelect(res.id)}
+            >
+              <div className="myres-header">
+                <span className="myres-procedure">{res.procedure}</span>
+                <span
+                  className={`myres-status ${
+                    res.status === "potvrzeno"
+                      ? "myres-status--ok"
+                      : "myres-status--pending"
+                  }`}>
+                  {res.status}
+                </span>
               </div>
-            )}
-          </div>
-        ))}
-        {mockReservations.length === 0 && (
-          <div className="text-gray-500">Nemáte žádné rezervace.</div>
-        )}
+              {selected === res.id && (
+                <div className="myres-details">
+                  <div><span className="myres-label">Klinika:</span> {res.clinic}</div>
+                  <div><span className="myres-label">Lékař:</span> {res.doctor}</div>
+                  <div>
+                    <span className="myres-label">Datum a čas:</span>{" "}
+                    {new Date(res.datetime).toLocaleString("cs-CZ", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </div>
+                  <div className="myres-actions">
+                    <button
+                      className="myres-btn myres-btn--change"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleChange(res.id);
+                      }}
+                    >
+                      Změnit termín
+                    </button>
+                    <button
+                      className="myres-btn myres-btn--cancel"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCancel(res.id);
+                      }}
+                    >
+                      Zrušit rezervaci
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+          {mockReservations.length === 0 && (
+            <div className="myres-empty">
+              Nemáte žádné rezervace.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
