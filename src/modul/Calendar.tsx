@@ -94,7 +94,7 @@ export default function Calendar(): JSX.Element {
         const [hours, minutes] = selectedTime.split(':').map(Number);
         dateTime.setHours(hours, minutes, 0, 0);
         sessionStorage.setItem("appointmentDateTime", dateTime.toISOString());
-        window.location.href = "/rezervovat";
+        window.location.href = "/";
     }
 
     return (

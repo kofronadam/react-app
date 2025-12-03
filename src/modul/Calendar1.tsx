@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../App.css';
+import '../modul.css';
 
 const HOURS = Array.from({ length: 8 }, (_, i) => 8 + i); // 8..15 (8 one-hour slots)
 

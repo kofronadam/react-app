@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import '../App.css';
+import '../modul.css';
 import { useNavigate } from "react-router-dom";
 
 type Clinic = { id: string; name: string };
