@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./MyReservation.css"
+import "./ManReservation.css"
 
 type Reservation = {
   id: number;
@@ -29,7 +29,7 @@ const mockReservations: Reservation[] = [
   }
 ];
 
-export default function MyReservations() {
+export default function ManReservations() {
   const [selected, setSelected] = useState<number | null>(null);
 
   const handleSelect = (id: number) => {
@@ -104,6 +104,7 @@ export default function MyReservations() {
               )}
             </div>
           ))}
+          
           {mockReservations.length === 0 && (
             <div className="myres-empty">
               Nemáte žádné rezervace.

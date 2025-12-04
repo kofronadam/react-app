@@ -7,7 +7,7 @@ import App from './App.tsx'
 import AppointmentForm from './modul/rezervovat.tsx'
 import Calendar from "./modul/Calendar.tsx";
 import Calendar1 from "./modul/Calendar1.tsx";
-import MyReservations from "./components/MyReservation.tsx";
+import ManReservations from "./components/ManReservation.tsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="moje-rezervace" element={<MyReservations />} />
+        <Route path="sprava-rezervace" element={<ManReservations />} />
         <Route path="rezervovat" element={<AppointmentForm />} />
         <Route path="calendar" element={<Calendar />} />
         <Route path="calendar1" element={<Calendar1 />} />

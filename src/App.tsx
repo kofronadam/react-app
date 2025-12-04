@@ -9,15 +9,15 @@ export default function App() {
       <nav className="bg-white shadow-sm p-4 flex items-center gap-4">
         <button
           className="button:hover"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/rezervovat")}
         >
           Rezervace
         </button>
         <button
           className="button:hover"
-          onClick={() => navigate("/moje-rezervace")}
+          onClick={() => navigate("/sprava-rezervace")}
         >
-          Moje rezervace
+          Správa rezervace
         </button>
         {/* Přidejte další odkazy dle potřeby */}
       </nav>
