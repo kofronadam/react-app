@@ -104,7 +104,6 @@ export default function ManReservations() {
               )}
             </div>
           ))}
-          
           {mockReservations.length === 0 && (
             <div className="myres-empty">
               Nemáte žádné rezervace.
