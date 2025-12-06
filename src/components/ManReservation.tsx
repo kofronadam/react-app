@@ -1,5 +1,6 @@
-import { useState } from "react";
-import "./ManReservation.css"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./ManReservation.css";
 
 type Reservation = {
   id: number;
@@ -31,6 +32,7 @@ const mockReservations: Reservation[] = [
 
 export default function ManReservations() {
   const [selected, setSelected] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const handleSelect = (id: number) => {
     setSelected(id === selected ? null : id);
@@ -47,7 +49,18 @@ export default function ManReservations() {
   return (
     <div className="myres-root">
       <div className="myres-container">
-        <h1 className="myres-title">Moje rezervace</h1>
+        <div className="myres-title-row">
+          <h1 className="myres-title">Moje rezervace</h1>
+          <button
+            className="myres-nav-btn"
+            onClick={() => navigate("/rezervovat")}
+            aria-label="Rezervovat"
+          >
+            Rezervovat
+          </button>
+          
+        </div>
+
         <div className="myres-list">
           {mockReservations.map((res) => (
             <div
@@ -104,6 +117,7 @@ export default function ManReservations() {
               )}
             </div>
           ))}
+          
           {mockReservations.length === 0 && (
             <div className="myres-empty">
               Nemáte žádné rezervace.
